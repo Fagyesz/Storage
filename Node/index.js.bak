@@ -1,0 +1,201 @@
+var http = require("http");
+var express = require('express');
+var app = express();
+var mysql      = require('mysql');
+var bodyParser = require('body-parser');
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUI = require('swagger-ui-express');
+
+
+app.use(bodyParser.json())
+var connection = mysql.createConnection({
+    host     : 'localhost', 
+    user     : 'root', 
+    password : '', 
+    database : 'restapibeadando' 
+  });
+
+  connection.connect(function(err){
+      if(err) throw err
+      console.log('A csatlakozás sikerült...')
+  })
+
+  app.use( bodyParser.json());
+  app.use( bodyParser.urlencoded({
+      extended:true
+  }));
+
+  var server = app.listen(3306,  "127.0.0.1", function () {
+ 
+    var host = server.address().address
+    var port = server.address().port
+   
+    console.log("Figyeljük a következő URI-t http://%s:%s", host, port)
+   
+  });
+
+const swaggerOptions={
+    swaggerDefinition:{
+        info:{
+            title:'Players API',
+            version: '1.0.0'
+        }
+    },
+    apis: ['index.js'],
+    
+};
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
+
+/**
+ * @swagger
+ * /players:
+ *   get:
+ *     description: Get all players
+ *     responses:
+ *       200:
+ *         Description: Success
+ */ 
+ app.get('/players', function(req,res){
+    connection.query('select * from players', function (error, result, fields){
+        if(error) throw error;
+        res.json(result);
+        
+    })
+})
+
+/**
+ * @swagger
+ * /players/post:
+ *   post:
+ *     description: Add a player
+ *     parameters:
+ *     - name: Name
+ *       description: Name of the player
+ *       in: formData
+ *       required: true
+ *       type: string
+ *     - name: Age
+ *       description: Age of the player
+ *       in: formData
+ *       required: true
+ *       type: integer    
+ *     - name: Position
+ *       description: Position of the player
+ *       in: formData
+ *       required: true
+ *       type: string
+ *     - name: Value
+ *       description: Value of the player in Euro
+ *       in: formData
+ *       required: true
+ *       type: integer  
+ *     responses:
+ *       201:
+ *         Description: Added
+ */
+ app.post('/players/post', function (req, res) {
+    var postData  = req.body;
+    connection.query('INSERT INTO players SET ?', postData, function (error, result) {
+       if (error) throw error;
+       res.end(JSON.stringify(result));
+     });
+ });
+/**
+ * @swagger
+ * /players/{id}:
+ *   get:
+ *     description: Get a player by his/her id
+ *     parameters:
+ *      - in: path
+ *        name: id
+ *        required: true
+ *        type: integer
+ *     responses:
+ *       200:
+ *         Description: Success
+ */
+ app.get('/players/:id', function (req, res) {    
+    connection.query('select * from players where id=?', [req.params.id], function (error, result) {
+    if (error) throw error;
+    res.end(JSON.stringify(result));
+   });
+});
+/**
+ * @swagger
+ * /players/delete/{id}: 
+ *   delete:
+ *     description: Deletes a player by his/her id*   
+ *     responses:       
+ *       204:
+ *         Description: Deleted    
+ *   parameters:
+ *     - in: path
+ *       name: id
+ *       required: true
+ *       type: integer             
+ */
+ app.delete('/players/delete/:id', function (req, res) {
+    console.log(req.body);
+    connection.query('DELETE FROM `players` WHERE `id`=?', [req.params.id], function (error) {
+       if (error) throw error;
+       res.end('Törlés ok');
+     });
+ });
+/**
+ * @swagger
+ * /players/put/{id}:
+ *   parameters:
+ *     - name: id
+ *       description: Id of the player
+ *       in: path
+ *       required: true
+ *       type: integer
+ *     - name: Name
+ *       description: Name of the player
+ *       in: formData
+ *       required: true
+ *       type: string
+ *     - name: Age
+ *       description: Age of the player
+ *       in: formData
+ *       required: true
+ *       type: integer    
+ *     - name: Position
+ *       description: Position of the player
+ *       in: formData
+ *       required: true
+ *       type: string
+ *     - name: Value
+ *       description: Value of the player in Euro
+ *       in: formData
+ *       required: true
+ *       type: integer  
+ *   put:
+ *     description: Updates a player    
+ *     responses:
+ *       200:
+ *         Description: Updated
+ */
+ app.put('/players/put/:id', function (req, res) {
+    const {  name, age, position, value } = req.body
+    connection.query('UPDATE players SET name = ?, age = ?, position = ?, value = ? WHERE id = ?', [name, age, position, value, req.params.id] , (error, rows) => {        
+        if(!error) {
+            res.send(`Player with the Id: ${req.params.id} has been updated.`)
+        } else {
+            console.log(error)
+        }
+        console.log(req.body)
+    })
+    
+})
+    
+  
+  
+  
+
+
+
+
+
+
