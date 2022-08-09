@@ -220,6 +220,11 @@ app.get('/statistics', function(req,res){
  *       in: formData
  *       required: true
  *       type: int    
+ *     - name: place
+ *       description: Where the meat is from
+ *       in: formData
+ *       required: true
+ *       type: string
  *     - name: arrived
  *       description: Arrived time
  *       in: formData
@@ -234,11 +239,6 @@ app.get('/statistics', function(req,res){
  *       example: "2017-01-01"
  *       format: date
  *       pattern: "YYYY-MM-DD"
- *     - name: place
- *       description: Where the meat is from
- *       in: formData
- *       required: true
- *       type: string
  *     responses:
  *       201:
  *         Description: Added
@@ -267,7 +267,12 @@ app.get('/statistics', function(req,res){
  *       description: Meat weight
  *       in: formData
  *       required: true
- *       type: int    
+ *       type: int   
+  *     - name: place
+ *       description: Where the meat is from
+ *       in: formData
+ *       required: true
+ *       type: string 
  *     - name: arrived
  *       description: Arrived time
  *       in: formData
@@ -275,7 +280,7 @@ app.get('/statistics', function(req,res){
  *       example: "2017-01-01"
  *       format: date
  *       pattern: "YYYY-MM-DD"
- *     - name: place
+ *     - name: externalid
  *       description: Where the meat is from
  *       in: formData
  *       required: true
@@ -382,6 +387,11 @@ app.get('/statistics', function(req,res){
  *       in: formData
  *       required: true
  *       type: int 
+ *     - name: externalid
+ *       description: Resource ID
+ *       in: formData
+ *       required: true
+ *       type: int 
  *     - name: name
  *       description: Name of the meat
  *       in: formData
@@ -399,6 +409,13 @@ app.get('/statistics', function(req,res){
  *       type: string
  *     - name: arrived
  *       description: Arrived time
+ *       in: formData
+ *       required: true
+ *       example: "2017-01-01"
+ *       format: date
+ *       pattern: "YYYY-MM-DD"
+ *     - name: Butchered
+ *       description: Butchered time
  *       in: formData
  *       required: true
  *       example: "2017-01-01"
@@ -525,6 +542,11 @@ app.get('/statistics', function(req,res){
  *       in: formData
  *       required: true
  *       type: int    
+ *     - name: place
+ *       description: Where the meat is from
+ *       in: formData
+ *       required: true
+ *       type: string
  *     - name: arrived
  *       description: Arrived time
  *       in: formData
@@ -532,11 +554,13 @@ app.get('/statistics', function(req,res){
  *       example: "2017-01-01"
  *       format: date
  *       pattern: "YYYY-MM-DD"
- *     - name: place
- *       description: Where the meat is from
+ *     - name: butchered
+ *       description: Arrived time
  *       in: formData
  *       required: true
- *       type: string
+ *       example: "2017-01-01"
+ *       format: date
+ *       pattern: "YYYY-MM-DD"
  *     - name: marinated
  *       description: When is the marination ends
  *       in: formData
@@ -924,6 +948,11 @@ app.put('/animals/put/:id', function (req, res) {
  *       in: formData
  *       required: true
  *       type: int    
+*     - name: place
+ *       description: Where the meat is from
+ *       in: formData
+ *       required: true
+ *       type: string
  *     - name: arrived
  *       description: Arrived time
  *       in: formData
@@ -938,11 +967,6 @@ app.put('/animals/put/:id', function (req, res) {
  *       example: "2017-01-01"
  *       format: date
  *       pattern: "YYYY-MM-DD"
- *     - name: place
- *       description: Where the meat is from
- *       in: formData
- *       required: true
- *       type: string
  *   put:
  *     description: Updates a animal    
  *     responses:
@@ -953,7 +977,7 @@ app.put('/animals/put/:id', function (req, res) {
 
 app.put('/resourcestorage/put/:id', function (req, res) {
     const {  name, weight, arrived, butchered,place } = req.body
-    connection.query('UPDATE resourcestorage SET name = ?, weight = ?, arrived = ?, butchered = ?, place = ? WHERE id = ?', [name, weight, arrived, butchered,place, req.params.id] , (error, rows) => {        
+    connection.query('UPDATE resourcestorage SET name = ?, weight = ?, place = ?, arrived = ?, butchered = ? WHERE id = ?', [name, weight,place, arrived, butchered, req.params.id] , (error, rows) => {        
         if(!error) {
             res.send(`RS with the Id: ${req.params.id} has been updated.`)
         } else {
@@ -978,7 +1002,12 @@ app.put('/resourcestorage/put/:id', function (req, res) {
  *       description: Meat weight
  *       in: formData
  *       required: true
- *       type: int    
+ *       type: int 
+ *     - name: place
+ *       description: Where the meat is from
+ *       in: formData
+ *       required: true
+ *       type: string   
  *     - name: arrived
  *       description: Arrived time
  *       in: formData
@@ -986,11 +1015,6 @@ app.put('/resourcestorage/put/:id', function (req, res) {
  *       example: "2017-01-01"
  *       format: date
  *       pattern: "YYYY-MM-DD"
- *     - name: place
- *       description: Where the meat is from
- *       in: formData
- *       required: true
- *       type: string
  *   put:
  *     description: Updates a animal    
  *     responses:
@@ -999,7 +1023,7 @@ app.put('/resourcestorage/put/:id', function (req, res) {
  */
 app.put('/drystorage/put/:id', function (req, res) {
     const {  name, weight, arrived, place } = req.body
-    connection.query('UPDATE drystorage SET name = ?, weight = ?, arrived = ?, place = ? WHERE id = ?', [name, weight, arrived, place, req.params.id] , (error, rows) => {        
+    connection.query('UPDATE drystorage SET name = ?, weight = ?, place = ?, arrived = ? WHERE id = ?', [name, weight, place, arrived, req.params.id] , (error, rows) => {        
         if(!error) {
             res.send(`Drystorage with the Id: ${req.params.id} has been updated.`)
         } else {
@@ -1071,7 +1095,7 @@ app.put('/drystorage/put/:id', function (req, res) {
  */
 app.put('/basin/put/:id', function (req, res) {
     const {  name, weight, arrived, place,marinadestart,marinadeend,smoking,rsid } = req.body
-    connection.query('UPDATE basin SET name = ?, weight = ?, arrived = ?, place = ?, marinadestart = ?, marinadeend = ?, smoking= ?, rsid =? WHERE id = ?', [name, weight, arrived, place,marinadestart,marinadeend,smoking,rsid, req.params.id] , (error, rows) => {        
+    connection.query('UPDATE basin SET name = ?, weight = ?, place = ?, arrived = ?, marinadestart = ?, marinadeend = ?, smoking= ?, rsid =? WHERE id = ?', [name, weight, place, arrived,marinadestart,marinadeend,smoking,rsid, req.params.id] , (error, rows) => {        
         if(!error) {
             res.send(`Basin with the Id: ${req.params.id} has been updated.`)
         } else {
@@ -1102,6 +1126,11 @@ app.put('/basin/put/:id', function (req, res) {
  *       in: formData
  *       required: true
  *       type: int 
+ *     - name: ExternaliD
+ *       description: Resource ID
+ *       in: formData
+ *       required: true
+ *       type: int 
  *     - name: name
  *       description: Name of the meat
  *       in: formData
@@ -1124,7 +1153,14 @@ app.put('/basin/put/:id', function (req, res) {
  *       example: "2017-01-01"
  *       format: date
  *       pattern: "YYYY-MM-DD"
-  *     - name: marinated
+ *     - name: Butchered
+ *       description: Butchered time
+ *       in: formData
+ *       required: true
+ *       example: "2017-01-01"
+ *       format: date
+ *       pattern: "YYYY-MM-DD"
+ *     - name: marinated
  *       description: When is the marination ends
  *       in: formData
  *       required: true
@@ -1145,8 +1181,8 @@ app.put('/basin/put/:id', function (req, res) {
  *         Description: Updated
  */
 app.put('/finalproduct/put/:id', function (req, res) {
-    const {  rsid, bid, did, name,weight,place,arrived,marinated,smoked } = req.body
-    connection.query('UPDATE finalproduct SET rsid = ?, bid = ?, did = ?, name = ?, weight = ?, place = ?, arrived = ?, marinated = ?, smoked = ? WHERE id = ?', [rsid, bid, did, name,weight,place,arrived,marinated,smoked, req.params.id] , (error, rows) => {        
+    const {  rsid, bid, did,externalid, name,weight,place,arrived,butchered,marinated,smoked } = req.body
+    connection.query('UPDATE finalproduct SET rsid = ?, bid = ?, did = ?,externalid = ?, name = ?, weight = ?, place = ?, arrived = ?, butchered = ?, marinated = ?, smoked = ? WHERE id = ?', [rsid, bid, did,externalid, name,weight,place,arrived,butchered,marinated,smoked, req.params.id] , (error, rows) => {        
         if(!error) {
             res.send(`FP with the Id: ${req.params.id} has been updated.`)
         } else {
@@ -1206,8 +1242,8 @@ app.put('/finalproduct/put/:id', function (req, res) {
  *         Description: Updated
  */
 app.put('/scrap/put/:id', function (req, res) {
-    const {  name, weight, time, rsid,did,bid } = req.body
-    connection.query('UPDATE scrap SET name = ?, weight = ?, time = ?, rsid = ?, did = ?, bid = ? WHERE id = ?', [name, weight, time, rsid,did,bid, req.params.id] , (error, rows) => {        
+    const {  name, weight,place, time, rsid,did,bid } = req.body
+    connection.query('UPDATE scrap SET name = ?, weight = ?, place = ?, time = ?, rsid = ?, did = ?, bid = ? WHERE id = ?', [name, weight,place, time, rsid,did,bid, req.params.id] , (error, rows) => {        
         if(!error) {
             res.send(`Scrap with the Id: ${req.params.id} has been updated.`)
         } else {
@@ -1293,8 +1329,8 @@ app.put('/scrap/put/:id', function (req, res) {
  *         Description: Updated
  */
 app.put('/statistics/put/:id', function (req, res) {
-    const {  fpid, rsid, bid, did,name, weight, place, arrived, marinated, smoked,stated } = req.body
-    connection.query('UPDATE statistics SET fpid = ?, rsid = ?, bid = ?, did = ? , name = ? , weight = ? , place = ? , arrived = ? , marinated = ? , smoked = ?, stated = ? WHERE id = ?', [fpid, rsid, bid, did,name, weight, place, arrived, marinated, smoked,stated, req.params.id] , (error, rows) => {        
+    const {  fpid, rsid, bid, did,name, weight, place, arrived,butchered, marinated, smoked,stated } = req.body
+    connection.query('UPDATE statistics SET fpid = ?, rsid = ?, bid = ?, did = ? , name = ? , weight = ? , place = ? , arrived = ?, butchered = ? , marinated = ? , smoked = ?, stated = ? WHERE id = ?', [fpid, rsid, bid, did,name, weight, place, arrived,butchered, marinated, smoked,stated, req.params.id] , (error, rows) => {        
         if(!error) {
             res.send(`Stat with the Id: ${req.params.id} has been updated.`)
         } else {

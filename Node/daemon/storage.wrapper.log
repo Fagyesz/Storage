@@ -1,0 +1,18 @@
+2022-08-08 10:17:51 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\vincz\AppData\Roaming\npm\node_modules\qckwinsvc\node_modules\node-windows\lib\wrapper.js --file C:\Storage\Node\index.js --log "Storage wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2022-08-08 10:17:51 - Started 2012
+2022-08-08 10:20:21 - Stopping storage.exe
+2022-08-08 10:20:21 - ProcessKill 2012
+2022-08-08 10:20:22 - Found child process: 15804 Name: conhost.exe
+2022-08-08 10:20:22 - Found child process: 17752 Name: node.exe
+2022-08-08 10:20:22 - Stopping process 15804
+2022-08-08 10:20:22 - Send SIGINT 15804
+2022-08-08 10:20:22 - SIGINT to 15804 failed - Killing as fallback
+2022-08-08 10:20:22 - Stopping process 17752
+2022-08-08 10:20:22 - Send SIGINT 17752
+2022-08-08 10:20:22 - SIGINT to 17752 failed - Killing as fallback
+2022-08-08 10:20:22 - Stopping process 2012
+2022-08-08 10:20:22 - Send SIGINT 2012
+2022-08-08 10:20:22 - SIGINT to 2012 failed - Killing as fallback
+2022-08-08 10:20:22 - Finished storage.exe
+2022-08-08 10:21:21 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\vincz\AppData\Roaming\npm\node_modules\qckwinsvc\node_modules\node-windows\lib\wrapper.js --file C:\Storage\Node\index.js --log "Storage wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2022-08-08 10:21:21 - Started 19496

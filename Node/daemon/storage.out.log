@@ -1,0 +1,165 @@
+Figyeljük a következő URI-t http://127.0.0.1:3000
+A csatlakozás sikerült...
+Figyeljük a következő URI-t http://127.0.0.1:3000
+A csatlakozás sikerült...
+Figyeljük a következő URI-t http://127.0.0.1:3000
+A csatlakozás sikerült...
+Figyeljük a következő URI-t http://127.0.0.1:3000
+A csatlakozás sikerült...
+{
+  id: 0,
+  name: 'CSülöktest',
+  weight: 90,
+  place: 'Eger',
+  arrived: '2022-08-08T00:01:01Z',
+  butchered: '2022-08-08T00:01:01Z'
+}
+{
+  id: 0,
+  name: 'Rizs2',
+  weight: 90,
+  place: 'Pécs',
+  arrived: '2022-08-08T00:01:01Z',
+  expiration: '2022-08-08T00:01:01Z',
+  externalid: 10
+}
+{
+  id: 0,
+  name: 'CSülöktest',
+  weight: 90,
+  place: 'Eger',
+  arrived: '2022-08-07T00:01:01Z',
+  marinadestart: '2022-08-07T00:01:01Z',
+  marinadeend: '2022-08-07T00:01:01Z',
+  smoking: '2001-01-01T01:01:01Z',
+  rsid: 47
+}
+{
+  id: 0,
+  rsid: 51,
+  bid: 57,
+  did: 52,
+  externalid: 300,
+  name: 'testt',
+  weight: 30,
+  place: 'Eger',
+  arrived: '2022-08-09T00:01:01Z',
+  butchered: '2022-08-08T00:01:01Z',
+  marinated: '2022-08-08T00:01:01Z',
+  smoked: '2001-01-01T01:01:01Z'
+}
+{}
+{
+  id: 0,
+  name: 'Csülök',
+  weight: 20,
+  place: 'test',
+  arrived: '2022-08-09T00:01:01Z',
+  butchered: '2022-08-09T00:01:01Z'
+}
+{
+  id: 0,
+  name: 'Csülök',
+  weight: 80,
+  place: 'test',
+  arrived: '2022-08-09T00:01:01Z',
+  marinadestart: '2022-08-09T00:01:01Z',
+  marinadeend: '2022-08-09T00:01:01Z',
+  smoking: '2022-09-01T00:01:01Z',
+  rsid: 52
+}
+{
+  id: 0,
+  name: 'rizst',
+  weight: 10,
+  place: 'Pécs',
+  arrived: '2022-08-09T00:01:01Z',
+  expiration: '2022-08-09T00:01:01Z',
+  externalid: 10
+}
+{
+  id: 0,
+  name: 'Csülök',
+  weight: 10,
+  place: 'test',
+  arrived: '2022-08-09T00:01:01Z',
+  marinadestart: '2022-08-09T00:01:01Z',
+  marinadeend: '2022-08-09T00:01:01Z',
+  smoking: '2022-09-01T00:01:01Z',
+  rsid: 52
+}
+{
+  id: 0,
+  rsid: 52,
+  bid: 59,
+  did: 53,
+  externalid: 10,
+  name: 'Hiány',
+  weight: 10,
+  place: 'test',
+  arrived: '2022-08-09T00:01:01Z',
+  butchered: '2001-01-01T01:01:01Z',
+  marinated: '2022-08-09T00:01:01Z',
+  smoked: '2022-09-01T00:01:01Z'
+}
+{
+  id: 0,
+  rsid: 52,
+  bid: 59,
+  did: 53,
+  externalid: 10,
+  name: 'Hiány',
+  weight: 4,
+  place: 'test',
+  arrived: '2022-08-09T00:01:01Z',
+  butchered: '2001-01-01T01:01:01Z',
+  marinated: '2022-08-09T00:01:01Z',
+  smoked: '2022-09-01T00:01:01Z'
+}
+Figyeljük a következő URI-t http://127.0.0.1:3000
+A csatlakozás sikerült...
+{
+  id: 0,
+  rsid: 52,
+  bid: 59,
+  did: 53,
+  externalid: 10,
+  name: 'Hiány',
+  weight: 1,
+  place: 'test',
+  arrived: '2022-08-09T00:01:01Z',
+  butchered: '2001-01-01T01:01:01Z',
+  marinated: '2022-08-09T00:01:01Z',
+  smoked: '2022-09-01T00:01:01Z'
+}
+Figyeljük a következő URI-t http://127.0.0.1:3000
+A csatlakozás sikerült...
+{
+  id: 0,
+  name: 'Csülök',
+  weight: 5,
+  place: 'test',
+  arrived: '2022-08-09T00:01:01Z',
+  marinadestart: '2022-08-09T00:01:01Z',
+  marinadeend: '2022-08-09T00:01:01Z',
+  smoking: '2022-09-01T00:01:01Z',
+  rsid: 52
+}
+{}
+{}
+{}
+{}
+{
+  id: 0,
+  rsid: 52,
+  bid: 0,
+  did: 53,
+  externalid: 10,
+  name: 'igen',
+  weight: 29,
+  place: 'test',
+  arrived: '2022-08-09T00:01:01Z',
+  butchered: '2022-08-09T00:01:01Z',
+  marinated: '2001-01-01T01:01:01Z',
+  smoked: '2001-01-01T01:01:01Z'
+}
